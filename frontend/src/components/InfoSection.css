@@ -1,0 +1,129 @@
+.info-section {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.info-desc {
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  max-width: 90%;
+}
+
+.info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.info-item .material-symbols-outlined {
+  color: var(--accent-color);
+  font-size: 28px;
+  background-color: var(--bg-primary);
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.info-item strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.info-item p {
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.info-services {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--bg-primary);
+  padding: 16px 24px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  border: 1px solid var(--border-color);
+}
+
+.service-tag {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.service-dot {
+  color: var(--text-accent);
+}
+
+.info-image-container {
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-xl) var(--radius-xl) 100px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--shadow-md);
+}
+
+.info-image-placeholder .material-symbols-outlined {
+  font-size: 80px;
+  color: var(--text-accent);
+  opacity: 0.5;
+}
+
+.info-shape {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(166, 124, 82, 0.1);
+  border-radius: var(--radius-xl) var(--radius-xl) 100px 100px;
+  z-index: 1;
+}
+
+@media (max-width: 992px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .info-image-container {
+    min-height: 300px;
+  }
+
+  .info-image-placeholder {
+    min-height: 300px;
+  }
+}

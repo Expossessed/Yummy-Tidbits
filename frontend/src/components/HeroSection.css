@@ -1,0 +1,71 @@
+.hero-section {
+    position: relative;
+    padding: 225px 0 225px;
+    text-align: center;
+    background-image: linear-gradient(rgba(62, 39, 35, 0.7), rgba(42, 25, 22, 0.85)), url('/YummyTidbits_images/YummyTidbits_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.title-accent {
+    font-family: var(--font-accent);
+    color: var(--text-accent);
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 48px;
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 100px 0 120px;
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        padding: 0 24px;
+    }
+}
