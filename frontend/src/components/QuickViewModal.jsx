@@ -36,7 +36,7 @@ const QuickViewModal = ({ isOpen, onClose, product, onAddToCart }) => {
           <div className="qv-details-side">
             <div className="qv-category">{product.categoryLabel}</div>
             <h2 className="qv-title">{product.name}</h2>
-            
+
             <div className="qv-rating-row">
               <div className="qv-stars">{renderStars(product.rating)}</div>
               <span className="qv-rating-text">({product.rating})</span>
@@ -49,8 +49,7 @@ const QuickViewModal = ({ isOpen, onClose, product, onAddToCart }) => {
             </div>
 
             <button className="btn-add-to-cart solid" onClick={() => onAddToCart(product.name)}>
-              <span className="material-symbols-outlined">shopping_bag</span>
-              Add to Cart
+              ORDER NOW
             </button>
           </div>
         </div>

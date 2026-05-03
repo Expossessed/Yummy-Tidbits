@@ -6,6 +6,8 @@ import OrderModal from './components/OrderForm/OrderModal';
 import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
 import FullMenuPage from './pages/FullMenuPage';
+import ContactPage from './pages/ContactPage';
+import ScrollHandler from './components/ScrollHandler';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,12 +29,14 @@ function App() {
 
   return (
     <Router>
+      <ScrollHandler />
       <div className="app-container">
         <Navbar onOrderClick={handleOpenModal} />
         
         <Routes>
           <Route path="/" element={<Home onOrderClick={handleOpenModal} />} />
           <Route path="/menu" element={<FullMenuPage onOrderClick={handleOpenModal} />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage onOrderClick={handleOpenModal} />} />
         </Routes>
         

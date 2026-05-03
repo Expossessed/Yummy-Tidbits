@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { allProducts } from '../../data/products';
 import './OrderModal.css';
 
@@ -9,6 +11,7 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     product: initialProduct,
+    quantity: 1,
     fullName: '',
     contactNumber: '',
     deliveryMode: '',
@@ -41,9 +44,9 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
   };
 
   const generateMessage = () => {
-    const { product, fullName, contactNumber, deliveryMode, deliveryAddress, preferredDate, specialInstructions } = formData;
+    const { product, quantity, fullName, contactNumber, deliveryMode, deliveryAddress, preferredDate, specialInstructions } = formData;
     
-    let message = `Hi, I'm ${fullName}! I would like to order ${product ? product : 'some treats'}. `;
+    let message = `Hi, I'm ${fullName}! I would like to order ${quantity}x ${product ? product : 'treat(s)'}. `;
     
     if (deliveryMode === 'Delivery') {
       message += `Please deliver it to ${deliveryAddress} on ${preferredDate}. `;
@@ -64,8 +67,9 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
   const handleCopyAndOpen = () => {
     navigator.clipboard.writeText(generatedMessage)
       .then(() => {
-        // Open Messenger link in a new tab
-        window.open('https://m.me/100063696411772', '_blank');
+        // Open Messenger link in a new tab with the text parameter (auto-fill if supported by their device/app)
+        const encodedMessage = encodeURIComponent(generatedMessage);
+        window.open(`https://m.me/100063696411772?text=${encodedMessage}`, '_blank');
         onClose(); // Optional: close modal after action
       })
       .catch(err => {
@@ -111,6 +115,18 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
                   ))}
                 </select>
               )}
+            </div>
+
+            <div className="form-group">
+              <label>QUANTITY *</label>
+              <input 
+                type="number" 
+                name="quantity" 
+                value={formData.quantity} 
+                onChange={handleChange} 
+                min="1"
+                required 
+              />
             </div>
 
             <div className="form-group">
@@ -179,13 +195,24 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
 
             <div className="form-group">
               <label>PREFERRED DATE *</label>
-              <input 
-                type="date" 
-                name="preferredDate" 
-                value={formData.preferredDate} 
-                onChange={handleChange} 
-                required 
-              />
+              <div className="custom-datepicker-wrapper">
+                <DatePicker
+                  selected={formData.preferredDate ? new Date(formData.preferredDate + 'T00:00:00') : null}
+                  onChange={(date) => {
+                    if (date) {
+                      const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+                      handleChange({ target: { name: 'preferredDate', value: formattedDate } });
+                    } else {
+                      handleChange({ target: { name: 'preferredDate', value: '' } });
+                    }
+                  }}
+                  minDate={new Date()}
+                  placeholderText="Select a date"
+                  className="react-datepicker-custom"
+                  required
+                />
+                <span className="material-symbols-outlined calendar-icon">calendar_month</span>
+              </div>
             </div>
 
             <div className="form-group">

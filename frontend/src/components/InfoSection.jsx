@@ -56,8 +56,17 @@ const InfoSection = () => {
           </div>
 
           <div className="info-image-container animate-fade-in delay-200">
-            <div className="info-image-placeholder">
-              <span className="material-symbols-outlined">storefront</span>
+            <div className="info-image-placeholder" style={{ padding: 0, overflow: 'hidden' }}>
+              <iframe 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, display: 'block' }} 
+                loading="lazy" 
+                allowFullScreen 
+                referrerPolicy="no-referrer-when-downgrade" 
+                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=RAMS%201911%20bldg.%20ML%20Quezon%20national%20highway%20Brgy.%20Gabi%20Cordova%20Cebu+(Yummy%20Tidbits%20by%20Mommy%20Anne)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                title="Yummy Tidbits Location"
+              ></iframe>
             </div>
             <div className="info-shape"></div>
           </div>

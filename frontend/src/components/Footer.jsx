@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer id="contact" className="footer">
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
@@ -14,9 +15,9 @@ const Footer = () => {
           <div className="footer-links">
             <div className="footer-group">
               <h4>Quick Links</h4>
-              <a href="#menu">Menu</a>
-              <a href="#about">About Us</a>
-              <a href="#contact">Contact</a>
+              <Link to="/menu">Menu</Link>
+              <Link to="/#about">About Us</Link>
+              <Link to="/contact">Contact</Link>
             </div>
             
             <div className="footer-group">
