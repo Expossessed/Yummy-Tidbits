@@ -22,8 +22,8 @@ const HeroSection = ({ onOrderClick }) => {
       </div>
       
       {/* Decorative elements to add the "cozy" vibe */}
-      <div className="hero-decoration dec-1"></div>
-      <div className="hero-decoration dec-2"></div>
+      <div className="hero-decoration dec-1 animate-float"></div>
+      <div className="hero-decoration dec-2 animate-float" style={{animationDelay: '2s'}}></div>
     </section>
   );
 };
