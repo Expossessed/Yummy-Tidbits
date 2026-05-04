@@ -102,6 +102,23 @@
   box-shadow: 0 4px 12px rgba(206, 159, 115, 0.15);
 }
 
+.contact-form input.input-error {
+  border-color: #e53935;
+  background-color: #fffaf9;
+}
+
+.contact-form input.input-error:focus {
+  box-shadow: 0 4px 12px rgba(229, 57, 53, 0.15);
+}
+
+.error-message {
+  display: block;
+  color: #e53935;
+  font-size: 0.85rem;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
 .submit-btn {
   width: 100%;
   padding: 16px;

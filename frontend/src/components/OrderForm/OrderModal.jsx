@@ -40,6 +40,33 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === 'contactNumber') {
+      // Allow only numbers, max 11 digits
+      const sanitizedValue = value.replace(/[^0-9]/g, '').slice(0, 11);
+      setFormData(prev => ({ ...prev, [name]: sanitizedValue }));
+      return;
+    }
+
+    if (name === 'fullName') {
+      // Allow only letters, spaces, and commas
+      const sanitizedValue = value.replace(/[^a-zA-ZñÑ\s,]/g, '');
+      setFormData(prev => ({ ...prev, [name]: sanitizedValue }));
+      return;
+    }
+
+    if (name === 'quantity') {
+      if (value === '') {
+        setFormData(prev => ({ ...prev, [name]: '' }));
+        return;
+      }
+      const num = parseInt(value, 10);
+      if (!isNaN(num) && num > 0) {
+        setFormData(prev => ({ ...prev, [name]: num }));
+      }
+      return;
+    }
+
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -148,7 +175,8 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
                 name="contactNumber" 
                 value={formData.contactNumber} 
                 onChange={handleChange} 
-                placeholder="e.g. 0912 345 6789"
+                placeholder="e.g. 09123456789"
+                maxLength="11"
                 required 
               />
             </div>
@@ -210,6 +238,7 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
                   placeholderText="Select a date"
                   className="react-datepicker-custom"
                   required
+                  onKeyDown={(e) => e.preventDefault()}
                 />
                 <span className="material-symbols-outlined calendar-icon">calendar_month</span>
               </div>
@@ -229,7 +258,7 @@ const OrderModal = ({ isOpen, onClose, initialProduct = '' }) => {
             <button 
               className="btn-primary modal-action-btn" 
               onClick={generateMessage}
-              disabled={!formData.product || !formData.fullName || !formData.contactNumber || !formData.preferredDate || !formData.deliveryMode || (formData.deliveryMode === 'Delivery' && !formData.deliveryAddress)}
+              disabled={!formData.product || !formData.quantity || !formData.fullName || !formData.contactNumber || !formData.preferredDate || !formData.deliveryMode || (formData.deliveryMode === 'Delivery' && !formData.deliveryAddress)}
             >
               GENERATE MESSAGE
             </button>

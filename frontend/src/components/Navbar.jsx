@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = ({ onOrderClick }) => {
+  const location = useLocation();
+  const currentPath = location.pathname + location.hash;
+
   return (
     <header className="navbar">
       <div className="container navbar-content">
@@ -12,10 +15,10 @@ const Navbar = ({ onOrderClick }) => {
         </div>
 
         <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/menu">Menu</Link>
-          <Link to="/#about">About</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/" className={currentPath === '/' ? 'active' : ''}>Home</Link>
+          <Link to="/menu" className={currentPath === '/menu' ? 'active' : ''}>Menu</Link>
+          <Link to="/#about" className={currentPath === '/#about' ? 'active' : ''}>About</Link>
+          <Link to="/contact" className={currentPath === '/contact' ? 'active' : ''}>Contact</Link>
         </nav>
 
         <button className="btn-primary order-btn" onClick={onOrderClick}>

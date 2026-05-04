@@ -12,6 +12,7 @@ const ContactPage = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [emailError, setEmailError] = useState('');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,11 +20,29 @@ const ContactPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    if (name === 'email') {
+      setEmailError('');
+    }
+    
+    if (name === 'name') {
+      const sanitizedValue = value.replace(/[^a-zA-ZñÑ\s,]/g, '');
+      setFormData(prev => ({ ...prev, [name]: sanitizedValue }));
+      return;
+    }
+
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|live\.com|icloud\.com)$/i;
+    if (!emailPattern.test(formData.email)) {
+      setEmailError('Please use a known email provider like @gmail.com, @yahoo.com, or @outlook.com');
+      return;
+    }
+
     setIsSubmitting(true);
     
     // Simulate sending an email/message via backend
@@ -120,9 +139,11 @@ const ContactPage = () => {
                     name="email" 
                     value={formData.email} 
                     onChange={handleChange} 
-                    placeholder="e.g. john@example.com"
+                    placeholder="e.g. john@gmail.com"
+                    className={emailError ? 'input-error' : ''}
                     required 
                   />
+                  {emailError && <span className="error-message">{emailError}</span>}
                 </div>
                 
                 <div className="form-group">
